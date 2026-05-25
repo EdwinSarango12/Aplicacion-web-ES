@@ -1,10 +1,10 @@
-# 🏢 Gestión de Empleados — Aplicación Web con Node.js + Docker
+#  Gestión de Empleados — Aplicación Web con Node.js + Docker
 
 > API REST + interfaz web CRUD para gestión de empleados, contenida en Docker con MySQL.
 
 ---
 
-## 📸 Capturas de Pantalla
+##  Capturas de Pantalla
 
 ### Pantalla Principal — Formulario CRUD
 ![Formulario CRUD](docs/screenshots/formulario.png)
@@ -17,14 +17,14 @@
 
 ---
 
-## 🎥 Video Demostración
+## Video Demostración
 
-> ▶️ **[Ver demo en YouTube](https://youtu.be/DEMO_VIDEO_URL)**  
+> **[Ver demo en YouTube](https://youtu.be/DEMO_VIDEO_URL)**  
 > *Demostración completa del CRUD: crear, listar, actualizar y eliminar empleados.*
 
 ---
 
-## 🚀 Inicio Rápido con Docker
+##  Inicio Rápido con Docker
 
 ### Opción 1 — Solo descargar `docker-compose.yml` (recomendado)
 
@@ -54,7 +54,7 @@ Abre tu navegador en: **http://localhost:3000**
 
 ---
 
-## ✅ Requisitos
+##  Requisitos
 
 | Herramienta | Versión mínima |
 |---|---|
@@ -65,7 +65,7 @@ Abre tu navegador en: **http://localhost:3000**
 
 ---
 
-## 🐳 Arquitectura Docker
+##  Arquitectura Docker
 
 ```
 ┌─────────────────────────────────────────────┐
@@ -112,7 +112,7 @@ Cada respuesta incluye el **comando SQL ejecutado**:
 
 ---
 
-## 🗂️ Estructura del Proyecto
+##  Estructura del Proyecto
 
 ```
 Aplicacion-web-ES/
@@ -129,7 +129,7 @@ Aplicacion-web-ES/
 
 ---
 
-## 🛠️ Comandos Útiles
+##  Comandos Útiles
 
 ```bash
 # Levantar contenedores en segundo plano
@@ -150,7 +150,7 @@ docker compose up --build -d
 
 ---
 
-## 🧑‍💻 Tecnologías Usadas
+##  Tecnologías Usadas
 
 - **Node.js 22** + **Express 5**
 - **MySQL 9.7** (Docker)
@@ -160,7 +160,7 @@ docker compose up --build -d
 
 ---
 
-## 👤 Autor
+##  Autor
 
 **Edwin Sarango**  
 📧 edwin.s.12.xd@gmail.com  
