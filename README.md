@@ -19,7 +19,7 @@
 
 ## Video Demostración
 
-> **[Ver demo en YouTube]([https://youtu.be/wemAci9hc-g](https://youtu.be/kYLIW6E8j7Q))**  
+> **[Ver demo en YouTube](https://youtu.be/wemAci9hc-g](https://youtu.be/kYLIW6E8j7Q))**  
 > *Demostración completa del CRUD: crear, listar, actualizar y eliminar empleados.*
 
 ---
