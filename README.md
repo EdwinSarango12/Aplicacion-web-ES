@@ -7,19 +7,19 @@
 ##  Capturas de Pantalla
 
 ### Pantalla Principal — Formulario CRUD
-![Formulario CRUD](docs/screenshots/formulario.png)
+![Formulario CRUD](<img width="1343" height="675" alt="Captura de pantalla 2026-05-25 123149" src="https://github.com/user-attachments/assets/c3dc5b36-d484-4b86-9e04-e422103bb4f6" />)
 
 ### Listado de Empleados
-![Listado](docs/screenshots/listado.png)
+![Listado](<img width="791" height="564" alt="Captura de pantalla 2026-05-25 123013" src="https://github.com/user-attachments/assets/99c3b95b-f597-4b7b-8e5c-864e9d5f2e0e" />)
 
 ### Comando SQL Ejecutado
-![SQL](docs/screenshots/sql-display.png)
+![SQL](<img width="836" height="94" alt="image" src="https://github.com/user-attachments/assets/9c85043e-2f0a-4d09-8da9-7ee8b317eff3" />)
 
 ---
 
 ## Video Demostración
 
-> **[Ver demo en YouTube](https://youtu.be/DEMO_VIDEO_URL)**  
+> **[Ver demo en YouTube]([https://youtu.be/DEMO_VIDEO_URL](https://youtu.be/wemAci9hc-g))**  
 > *Demostración completa del CRUD: crear, listar, actualizar y eliminar empleados.*
 
 ---
