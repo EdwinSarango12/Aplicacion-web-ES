@@ -7,13 +7,13 @@
 ##  Capturas de Pantalla
 
 ### Pantalla Principal — Formulario CRUD
-![Formulario CRUD](<img width="1343" height="675" alt="Captura de pantalla 2026-05-25 123149" src="https://github.com/user-attachments/assets/c3dc5b36-d484-4b86-9e04-e422103bb4f6" />)
+![Formulario CRUD](https://github.com/user-attachments/assets/c3dc5b36-d484-4b86-9e04-e422103bb4f6)
 
 ### Listado de Empleados
-![Listado](<img width="791" height="564" alt="Captura de pantalla 2026-05-25 123013" src="https://github.com/user-attachments/assets/99c3b95b-f597-4b7b-8e5c-864e9d5f2e0e" />)
+![Listado](https://github.com/user-attachments/assets/99c3b95b-f597-4b7b-8e5c-864e9d5f2e0e)
 
 ### Comando SQL Ejecutado
-![SQL](<img width="836" height="94" alt="image" src="https://github.com/user-attachments/assets/9c85043e-2f0a-4d09-8da9-7ee8b317eff3" />)
+![SQL](https://github.com/user-attachments/assets/9c85043e-2f0a-4d09-8da9-7ee8b317eff3)
 
 ---
 
