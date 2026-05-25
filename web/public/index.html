@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestión de Empleados</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; color: #333; }
+
+    header {
+      background: #1a1a2e;
+      color: white;
+      padding: 18px 32px;
+      font-size: 1.4rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 24px;
+      padding: 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: white;
+      border-radius: 10px;
+      padding: 24px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .card h2 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #1a1a2e;
+      margin-bottom: 18px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #e8eaf0;
+    }
+
+    .form-group {
+      margin-bottom: 14px;
+    }
+
+    label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #666;
+      margin-bottom: 5px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    input {
+      width: 100%;
+      padding: 9px 12px;
+      border: 1.5px solid #dde1ea;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      transition: border-color 0.2s;
+      outline: none;
+    }
+
+    input:focus { border-color: #4a6cf7; }
+
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    button {
+      padding: 10px 14px;
+      border: none;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.15s, transform 0.1s;
+    }
+
+    button:hover { opacity: 0.88; transform: translateY(-1px); }
+    button:active { transform: translateY(0); }
+
+    .btn-list   { background: #4a6cf7; color: white; }
+    .btn-get    { background: #17a2b8; color: white; }
+    .btn-create { background: #28a745; color: white; }
+    .btn-update { background: #fd7e14; color: white; }
+    .btn-delete { background: #dc3545; color: white; }
+
+    .right-panel { display: flex; flex-direction: column; gap: 20px; }
+
+    .sql-box {
+      background: #1e1e2e;
+      border-radius: 8px;
+      padding: 16px 20px;
+    }
+
+    .sql-box h2 {
+      color: #a0a8c0;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+    }
+
+    #sqlDisplay {
+      color: #a9f0a0;
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 0.95rem;
+      white-space: pre-wrap;
+      word-break: break-all;
+      min-height: 28px;
+    }
+
+    .sql-keyword { color: #569cd6; }
+    .sql-table   { color: #dcdcaa; }
+    .sql-value   { color: #ce9178; }
+
+    #responseArea h2 { }
+
+    .status-badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      margin-left: 10px;
+      vertical-align: middle;
+    }
+    .badge-ok  { background: #d4edda; color: #155724; }
+    .badge-err { background: #f8d7da; color: #721c24; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      margin-top: 12px;
+    }
+
+    th {
+      background: #f8f9fc;
+      padding: 10px 14px;
+      text-align: left;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #888;
+      border-bottom: 2px solid #e8eaf0;
+    }
+
+    td {
+      padding: 10px 14px;
+      border-bottom: 1px solid #f0f2f5;
+    }
+
+    tr:hover td { background: #f8f9fc; }
+
+    .msg-box {
+      padding: 14px 18px;
+      border-radius: 8px;
+      margin-top: 12px;
+      font-size: 0.95rem;
+    }
+    .msg-ok  { background: #d4edda; color: #155724; border-left: 4px solid #28a745; }
+    .msg-err { background: #f8d7da; color: #721c24; border-left: 4px solid #dc3545; }
+
+    .empty-state {
+      text-align: center;
+      color: #aaa;
+      padding: 40px 0;
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+
+
+<div class="container">
+
+  <!-- FORM -->
+  <div class="card">
+    <h2>Formulario</h2>
+
+    <div class="form-group">
+      <label>ID (para buscar / actualizar / eliminar)</label>
+      <input type="number" id="fId" placeholder="ej: 1" min="1">
+    </div>
+    <div class="form-group">
+      <label>Nombre</label>
+      <input type="text" id="fNombre" placeholder="ej: Juan Pérez">
+    </div>
+    <div class="form-group">
+      <label>Cargo</label>
+      <input type="text" id="fCargo" placeholder="ej: Desarrollador">
+    </div>
+    <div class="form-group">
+      <label>Sueldo</label>
+      <input type="number" id="fSueldo" placeholder="ej: 2000.00" step="0.01" min="0">
+    </div>
+
+    <div class="buttons">
+      <button class="btn-list"   onclick="op('list')"> Listar todos</button>
+      <button class="btn-get"    onclick="op('get')"> Buscar por ID</button>
+      <button class="btn-create" onclick="op('create')"> Crear empleado</button>
+      <button class="btn-update" onclick="op('update')"> Actualizar empleado</button>
+      <button class="btn-delete" onclick="op('delete')"> Eliminar empleado</button>
+    </div>
+  </div>
+
+  <!-- RIGHT PANEL -->
+  <div class="right-panel">
+
+    <!-- SQL -->
+    <div class="sql-box">
+      <h2>Comando SQL ejecutado</h2>
+      <pre id="sqlDisplay">-- Ejecuta una operación para ver el SQL</pre>
+    </div>
+
+    <!-- RESPONSE -->
+    <div class="card" id="responseArea">
+      <h2>Respuesta <span id="statusBadge"></span></h2>
+      <div id="responseContent">
+        <div class="empty-state">Ejecuta una operación para ver la respuesta.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  async function op(type) {
+    const id     = document.getElementById('fId').value.trim();
+    const nombre = document.getElementById('fNombre').value.trim();
+    const cargo  = document.getElementById('fCargo').value.trim();
+    const sueldo = document.getElementById('fSueldo').value.trim();
+
+    let url, options = {};
+
+    switch (type) {
+      case 'list':
+        url = '/empleados';
+        break;
+      case 'get':
+        if (!id) return alert('Ingresa un ID');
+        url = `/empleados/${id}`;
+        break;
+      case 'create':
+        if (!nombre || !cargo || sueldo === '') return alert('Ingresa nombre, cargo y sueldo');
+        url = '/empleados';
+        options = {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ nombre, cargo, sueldo: parseFloat(sueldo) })
+        };
+        break;
+      case 'update':
+        if (!id) return alert('Ingresa un ID');
+        if (!nombre || !cargo || sueldo === '') return alert('Ingresa nombre, cargo y sueldo');
+        url = `/empleados/${id}`;
+        options = {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ nombre, cargo, sueldo: parseFloat(sueldo) })
+        };
+        break;
+      case 'delete':
+        if (!id) return alert('Ingresa un ID');
+        url = `/empleados/${id}`;
+        options = { method: 'DELETE' };
+        break;
+    }
+
+    try {
+      const res = await fetch(url, options);
+      const json = await res.json();
+      renderSQL(json.sql || '-- Sin SQL disponible');
+      renderResponse(res.ok, res.status, json);
+    } catch (e) {
+      renderSQL('-- Error de red');
+      renderResponse(false, 0, { error: e.message });
+    }
+  }
+
+  function renderSQL(sql) {
+    if (!sql) return;
+    const highlighted = sql
+      .replace(/\b(SELECT|INSERT INTO|UPDATE|DELETE FROM|SET|VALUES|WHERE|FROM)\b/g,
+        '<span class="sql-keyword">$1</span>')
+      .replace(/\b(personal)\b/g,
+        '<span class="sql-table">$1</span>')
+      .replace(/'([^']*)'/g,
+        "'<span class=\"sql-value\">$1</span>'");
+    document.getElementById('sqlDisplay').innerHTML = highlighted;
+  }
+
+  function renderResponse(ok, status, json) {
+    const badge = document.getElementById('statusBadge');
+    badge.textContent = status ? `${status} ${ok ? 'OK' : 'Error'}` : 'Error';
+    badge.className = 'status-badge ' + (ok ? 'badge-ok' : 'badge-err');
+
+    const container = document.getElementById('responseContent');
+
+    if (!ok) {
+      container.innerHTML = `<div class="msg-box msg-err">${json.error || 'Error desconocido'}</div>`;
+      return;
+    }
+
+    const data = json.data;
+
+    // Array of objects → table
+    if (Array.isArray(data)) {
+      if (data.length === 0) {
+        container.innerHTML = '<div class="empty-state">Sin resultados.</div>';
+        return;
+      }
+      const cols = Object.keys(data[0]);
+      let html = '<table><thead><tr>' + cols.map(c => `<th>${c}</th>`).join('') + '</tr></thead><tbody>';
+      data.forEach(row => {
+        html += '<tr>' + cols.map(c => `<td>${row[c] ?? ''}</td>`).join('') + '</tr>';
+      });
+      html += '</tbody></table>';
+      container.innerHTML = html;
+      return;
+    }
+
+    // Single object with message
+    if (data && data.message) {
+      container.innerHTML = `<div class="msg-box msg-ok">${data.message}</div>`;
+      return;
+    }
+
+    // Single object (empleado)
+    if (data && typeof data === 'object') {
+      const cols = Object.keys(data);
+      let html = '<table><thead><tr>' + cols.map(c => `<th>${c}</th>`).join('') + '</tr></thead><tbody>';
+      html += '<tr>' + cols.map(c => `<td>${data[c] ?? ''}</td>`).join('') + '</tr>';
+      html += '</tbody></table>';
+      container.innerHTML = html;
+      return;
+    }
+
+    container.innerHTML = `<pre>${JSON.stringify(json, null, 2)}</pre>`;
+  }
+</script>
+
+</body>
+</html>
