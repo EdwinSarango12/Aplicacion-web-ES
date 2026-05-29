@@ -7,10 +7,10 @@
 ##  Capturas de Pantalla
 
 ### Pantalla Principal — Formulario CRUD
-![Formulario CRUD](https://github.com/user-attachments/assets/c3dc5b36-d484-4b86-9e04-e422103bb4f6)
+![Formulario CRUD](https://github.com/user-attachments/assets/8fe5a80d-bd93-43ad-93f4-52978be7cded)
 
 ### Listado de Empleados
-![Listado](https://github.com/user-attachments/assets/99c3b95b-f597-4b7b-8e5c-864e9d5f2e0e)
+![Listado](https://github.com/user-attachments/assets/19b9c7c9-25cf-4d97-af31-fe83f4d8aa25)
 
 ### Comando SQL Ejecutado
 ![SQL](https://github.com/user-attachments/assets/9c85043e-2f0a-4d09-8da9-7ee8b317eff3)
