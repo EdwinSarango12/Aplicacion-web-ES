@@ -23,6 +23,11 @@ const connection = mysql.createPool({
     connectionLimit: 10
 });
 
+connection.on('connection', (conn) => {
+    conn.query("SET NAMES 'utf8mb4'");
+    conn.query("SET CHARACTER SET utf8mb4");
+});
+
 connection.getConnection((err, conn) => {
     if (err) {
         console.error('Error de conexión:', err);

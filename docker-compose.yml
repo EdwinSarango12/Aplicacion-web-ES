@@ -21,10 +21,12 @@ services:
   db:
     image: mysql:latest
     container_name: contenedorBD
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     environment:
       MYSQL_ROOT_PASSWORD: password
     volumes:
       - volumen-BD:/var/lib/mysql
+      - ../empleado.sql:/docker-entrypoint-initdb.d/empleado.sql:ro
     ports:
       - "3307:3306"
     healthcheck:
